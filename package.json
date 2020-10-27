@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "postbuild": "next-on-netlify",
+    "start": "next start",
+    "preview":"yarn build && netlify dev"
   },
   "dependencies": {
     "next": "9.5.5",
@@ -13,6 +15,7 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "next-on-netlify": "^2.6.0",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^1.9.6"
   }
