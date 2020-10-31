@@ -4,25 +4,43 @@ import Search from "../components/Search";
 import UserCard from "../components/UserCard";
 import Loader from "../components/Loader";
 
-import { getUsersURL } from "../utils";
+import { getUsersURL, userDetailsURL } from "../utils";
+
+import { languages } from "../utils";
 
 function Home() {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
   const [location, setLocation] = useState("");
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState(languages[0]);
+  const [user, setUser] = useState({});
+  const [userLoading, setUserLoading] = useState(false);
 
   useEffect(() => {
-    if (!location && !language) return;
     const endPoint = getUsersURL(location, language);
     setLoading(true);
     fetch(endPoint)
       .then((res) => res.json())
       .then((data) => {
         setUsers(data.items);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, [location, language]);
+
+  const handleCardClick = (login) => {
+    console.log("Fetching ", login);
+    setUserLoading(true);
+    fetch(`${userDetailsURL}/${login}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+      })
+      .finally(() => {
+        setUserLoading(false);
+      });
+  };
 
   return (
     <div className="max-w-6xl mx-auto min-h-screen bg-gray-100">
@@ -37,6 +55,17 @@ function Home() {
         setLocation={setLocation}
         loading={loading}
       />
+
+      {false && (
+        <div className="flex justify-center items-center bg-white">
+          <div className="absolute mt-40  h-64 w-64 ">
+            <img className="" src={user.avatar_url} />
+            <h3>{user.name}</h3>
+            <p>{user.bio}</p>
+          </div>
+        </div>
+      )}
+
       <div
         className={`flex flex-wrap ${
           loading ? "justify-center" : "justify-around"
@@ -55,6 +84,7 @@ function Home() {
                 login={user.login}
                 html_url={user.html_url}
                 key={i}
+                handleCardClick={handleCardClick}
               />
             );
           })
