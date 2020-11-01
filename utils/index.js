@@ -3,6 +3,7 @@ const languages = [
   "PHP",
   "C#",
   "C",
+  "Java",
   "C++",
   "Swift",
   "Rust",

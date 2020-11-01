@@ -1,11 +1,6 @@
 function UserCard(user) {
   return (
-    <div
-      className="flex items-center ml-4 mt-4 bg-white w-64 shadow-md hover:shadow-xl rounded-xl cursor-pointer overflow-hidden"
-      onClick={() => {
-        user.handleCardClick(user.login);
-      }}
-    >
+    <div className="flex items-center ml-4 mt-4 bg-white w-64 shadow-md hover:shadow-xl rounded-xl cursor-pointer overflow-hidden">
       <img
         className="w-32 h-32 object-cover object-center"
         src={user.cardImg}

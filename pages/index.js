@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import Search from "../components/Search";
@@ -13,8 +14,6 @@ function Home() {
   const [users, setUsers] = useState([]);
   const [location, setLocation] = useState("");
   const [language, setLanguage] = useState(languages[0]);
-  const [user, setUser] = useState({});
-  const [userLoading, setUserLoading] = useState(false);
 
   useEffect(() => {
     const endPoint = getUsersURL(location, language);
@@ -27,70 +26,54 @@ function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, [location, language]);
-
-  const handleCardClick = (login) => {
-    console.log("Fetching ", login);
-    setUserLoading(true);
-    fetch(`${userDetailsURL}/${login}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-      })
-      .finally(() => {
-        setUserLoading(false);
-      });
-  };
+  }, [language, location]);
 
   return (
-    <div className="max-w-6xl mx-auto min-h-screen bg-gray-100">
-      <Nav />
-      <div className="flex justify-center mt-6">
-        <h1 className="text-2xl text-gray-800 leading-none">
-          Search developers around the world
-        </h1>
-      </div>
-      <Search
-        setLanguage={setLanguage}
-        setLocation={setLocation}
-        loading={loading}
-      />
-
-      {false && (
-        <div className="flex justify-center items-center bg-white">
-          <div className="absolute mt-40  h-64 w-64 ">
-            <img className="" src={user.avatar_url} />
-            <h3>{user.name}</h3>
-            <p>{user.bio}</p>
-          </div>
+    <>
+      <Head>
+        <title>
+          RemoteFine | Find the best devs around the world | Filter via
+          programming languages
+        </title>
+      </Head>
+      <div className="max-w-6xl mx-auto min-h-screen bg-gray-100">
+        <Nav />
+        <div className="flex justify-center mt-6">
+          <h1 className="text-2xl text-gray-800 leading-none">
+            Search developers around the world
+          </h1>
         </div>
-      )}
+        <Search
+          setLanguage={setLanguage}
+          setLocation={setLocation}
+          loading={loading}
+        />
 
-      <div
-        className={`flex flex-wrap ${
-          loading ? "justify-center" : "justify-around"
-        }`}
-      >
-        {loading ? (
-          <div className="mt-24">
-            <Loader />
-          </div>
-        ) : (
-          users &&
-          users.map((user, i) => {
-            return (
-              <UserCard
-                cardImg={user.avatar_url}
-                login={user.login}
-                html_url={user.html_url}
-                key={i}
-                handleCardClick={handleCardClick}
-              />
-            );
-          })
-        )}
+        <div
+          className={`flex flex-wrap ${
+            loading ? "justify-center" : "justify-around"
+          }`}
+        >
+          {loading ? (
+            <div className="mt-24">
+              <Loader />
+            </div>
+          ) : (
+            users &&
+            users.map((user, i) => {
+              return (
+                <UserCard
+                  cardImg={user.avatar_url}
+                  login={user.login}
+                  html_url={user.html_url}
+                  key={i}
+                />
+              );
+            })
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

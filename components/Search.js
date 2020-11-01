@@ -132,39 +132,14 @@ function Search({ setLocation, setLanguage, loading }) {
       />
       <button
         disabled={loading}
-        className={`flex items-center justify-center ml-4 ${
+        className={`ml-4 ${
           loading ? "bg-purple-700" : "bg-purple-600"
-        } px-4 h-10 text-sm text-white rounded-xl focus:outline-none shadow-md hover:bg-purple-500`}
+        } px-4 py-3 w-40 text-sm text-white rounded-xl focus:outline-none shadow-md hover:bg-purple-500`}
         type="button"
         onClick={handleSubmit}
       >
-        <svg
-          className="h-4"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="9.76663"
-            cy="9.76657"
-            r="8.98856"
-            stroke="#fff"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M16.0183 16.4851L19.5423 20"
-            stroke="#fff"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
         <span className="ml-1 text-sm font-bold uppercase leading-snug">
-          {loading ? "Please wait" : "Search"}
+          {loading ? "Searching" : "Search"}
         </span>
       </button>
     </form>
