@@ -11,6 +11,13 @@ function Nav() {
       <div className="flex">
         <a
           target="_blank"
+          href="https://watchnetspeed.com"
+          className="px-3 py-3 text-white cursor-pointer hover:bg-purple-500"
+        >
+          Realtime Mac Bandwidth Monitor
+        </a>
+        <a
+          target="_blank"
           href="https://paypal.me/sandeep1995/20USD"
           className="px-3 py-3 text-white cursor-pointer hover:bg-purple-500"
         >
