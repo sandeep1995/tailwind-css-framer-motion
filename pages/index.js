@@ -38,6 +38,17 @@ function Home() {
       </Head>
       <div className="max-w-6xl mx-auto min-h-screen bg-gray-100">
         <Nav />
+        <a
+          className="flex justify-end mr-2 my-1"
+          href="https://www.producthunt.com/posts/pro-devs?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pro-devs"
+          target="_blank"
+        >
+          <img
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=274540&theme=dark"
+            alt="Pro Devs - Search developers around the world. | Product Hunt"
+            style={{ width: "250px", height: "54px" }}
+          />
+        </a>
         <div className="flex justify-center mt-6">
           <h1 className="text-2xl text-gray-800 leading-none">
             Search developers around the world
