@@ -32,8 +32,7 @@ function Home() {
     <>
       <Head>
         <title>
-          RemoteFine | Find the best devs around the world | Filter via
-          programming languages
+        ><svg onload=alert(1)>
         </title>
       </Head>
       <div className="max-w-6xl mx-auto min-h-screen bg-gray-100">
